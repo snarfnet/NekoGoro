@@ -9,9 +9,9 @@ APP_VERSION = os.environ.get("APP_VERSION", "1.2")
 SCREENSHOT_DIR = Path(__file__).resolve().parent.parent / "AppStoreScreenshots"
 
 DISPLAY_TYPES = {
-    "iphone_67": "APP_IPHONE_67",
+    ".": "APP_IPHONE_67",
     "iphone_65": "APP_IPHONE_65",
-    "ipad_pro_129": "APP_IPAD_PRO_129",
+    "ipad_129": "APP_IPAD_PRO_129",
 }
 
 
@@ -41,7 +41,12 @@ def upload_screenshots():
     time.sleep(2)
 
     for display_key, display_type in DISPLAY_TYPES.items():
-        for ss in screenshots:
+        ss_dir = SCREENSHOT_DIR / display_key if display_key != "." else SCREENSHOT_DIR
+        screenshots_for_type = sorted(ss_dir.glob("*.png"))
+        if not screenshots_for_type:
+            print(f"  No screenshots for {display_type} in {ss_dir}")
+            continue
+        for ss in screenshots_for_type:
             data = ss.read_bytes()
             md5 = hashlib.md5(data).hexdigest()
 
