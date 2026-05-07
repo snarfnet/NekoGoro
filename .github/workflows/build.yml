@@ -93,6 +93,13 @@ jobs:
       - name: Install ASC API tools
         run: pip3 install --break-system-packages PyJWT requests
 
+      - name: Set App Privacy
+        continue-on-error: true
+        env:
+          ASC_KEY_ID: WDXGY9WX55
+          ASC_ISSUER_ID: 2be0734f-943a-4d61-9dc9-5d9045c46fec
+        run: python3 scripts/set_privacy.py
+
       - name: Upload screenshots
         env:
           ASC_KEY_ID: WDXGY9WX55
