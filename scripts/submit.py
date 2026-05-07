@@ -127,13 +127,32 @@ def main():
         try:
             existing = api("GET", f"/apps/{app_id}/reviewSubmissions?filter[state]={state}")
             for item in existing.get("data", []):
+                sub_id = item["id"]
+                # Try to delete items first
                 try:
-                    api("PATCH", f"/reviewSubmissions/{item['id']}", json={
-                        "data": {"type": "reviewSubmissions", "id": item["id"], "attributes": {"canceled": True}}
+                    items_resp = api("GET", f"/reviewSubmissions/{sub_id}/items")
+                    for si in items_resp.get("data", []):
+                        try:
+                            api("DELETE", f"/reviewSubmissionItems/{si['id']}")
+                            print(f"Deleted item {si['id']} from {sub_id}")
+                        except RuntimeError:
+                            pass
+                except RuntimeError:
+                    pass
+                # Try cancel
+                try:
+                    api("PATCH", f"/reviewSubmissions/{sub_id}", json={
+                        "data": {"type": "reviewSubmissions", "id": sub_id, "attributes": {"canceled": True}}
                     })
-                    print(f"Canceled review submission {item['id']} (was {state})")
+                    print(f"Canceled review submission {sub_id} (was {state})")
                 except RuntimeError as e:
-                    print(f"Could not cancel {item['id']} ({state}): {e}")
+                    print(f"Could not cancel {sub_id} ({state}): {e}")
+                    # Try DELETE
+                    try:
+                        api("DELETE", f"/reviewSubmissions/{sub_id}")
+                        print(f"Deleted review submission {sub_id}")
+                    except RuntimeError as e2:
+                        print(f"Could not delete {sub_id}: {e2}")
         except RuntimeError:
             pass
     time.sleep(3)
