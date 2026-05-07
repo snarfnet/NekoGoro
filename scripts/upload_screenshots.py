@@ -51,7 +51,6 @@ def upload_screenshots():
                     "attributes": {
                         "fileName": ss.name,
                         "fileSize": len(data),
-                        "sourceFileChecksum": md5,
                     },
                     "relationships": {
                         "appScreenshotSet": {"data": {"type": "appScreenshotSets", "id": get_or_create_screenshot_set(loc_id, display_type)}},
