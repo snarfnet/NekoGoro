@@ -118,8 +118,12 @@ def main():
             else:
                 raise
 
-    # Clean up stale review submissions
-    for state in ["READY_FOR_REVIEW", "COMPLETING", "UNRESOLVED_ISSUES"]:
+    # Clean up ALL stale review submissions
+    cancelable_states = [
+        "READY_FOR_REVIEW", "COMPLETING", "UNRESOLVED_ISSUES",
+        "WAITING_FOR_REVIEW", "IN_REVIEW",
+    ]
+    for state in cancelable_states:
         try:
             existing = api("GET", f"/apps/{app_id}/reviewSubmissions?filter[state]={state}")
             for item in existing.get("data", []):
@@ -127,30 +131,47 @@ def main():
                     api("PATCH", f"/reviewSubmissions/{item['id']}", json={
                         "data": {"type": "reviewSubmissions", "id": item["id"], "attributes": {"canceled": True}}
                     })
-                    print(f"Canceled review submission {item['id']}")
-                except RuntimeError:
-                    pass
+                    print(f"Canceled review submission {item['id']} (was {state})")
+                except RuntimeError as e:
+                    print(f"Could not cancel {item['id']} ({state}): {e}")
         except RuntimeError:
             pass
+    time.sleep(3)
 
-    review = api("POST", "/reviewSubmissions", json={
-        "data": {
-            "type": "reviewSubmissions",
-            "attributes": {"platform": "IOS"},
-            "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
-        }
-    })
-    review_id = review["data"]["id"]
+    # Try to find an existing usable submission first
+    try:
+        existing = api("GET", f"/apps/{app_id}/reviewSubmissions?filter[state]=READY_FOR_REVIEW")
+        if existing.get("data"):
+            review_id = existing["data"][0]["id"]
+            print(f"Reusing existing review submission {review_id}")
+        else:
+            raise RuntimeError("No existing submission")
+    except RuntimeError:
+        review = api("POST", "/reviewSubmissions", json={
+            "data": {
+                "type": "reviewSubmissions",
+                "attributes": {"platform": "IOS"},
+                "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
+            }
+        })
+        review_id = review["data"]["id"]
+        print(f"Created new review submission {review_id}")
 
-    api("POST", "/reviewSubmissionItems", json={
-        "data": {
-            "type": "reviewSubmissionItems",
-            "relationships": {
-                "reviewSubmission": {"data": {"type": "reviewSubmissions", "id": review_id}},
-                "appStoreVersion": {"data": {"type": "appStoreVersions", "id": version_id}},
-            },
-        }
-    })
+    try:
+        api("POST", "/reviewSubmissionItems", json={
+            "data": {
+                "type": "reviewSubmissionItems",
+                "relationships": {
+                    "reviewSubmission": {"data": {"type": "reviewSubmissions", "id": review_id}},
+                    "appStoreVersion": {"data": {"type": "appStoreVersions", "id": version_id}},
+                },
+            }
+        })
+    except RuntimeError as e:
+        if "409" in str(e):
+            print("Review submission item already exists, continuing")
+        else:
+            raise
 
     api("PATCH", f"/reviewSubmissions/{review_id}", json={
         "data": {"type": "reviewSubmissions", "id": review_id, "attributes": {"submitted": True}}
