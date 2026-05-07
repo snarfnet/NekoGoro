@@ -14,6 +14,8 @@
 		A10005 /* FurLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10005 /* FurLayer.swift */; };
 		A10006 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10006 /* AudioManager.swift */; };
 		A10007 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10007 /* HapticManager.swift */; };
+		A10008 /* CatVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10008 /* CatVideoView.swift */; };
+		A10009 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10009 /* StatsView.swift */; };
 		A10011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10011 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		B10005 /* FurLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurLayer.swift; sourceTree = "<group>"; };
 		B10006 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		B10007 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		B10008 /* CatVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatVideoView.swift; sourceTree = "<group>"; };
+		B10009 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		B10011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B10012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B10099 /* NekoGoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NekoGoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +67,8 @@
 				B10005 /* FurLayer.swift */,
 				B10006 /* AudioManager.swift */,
 				B10007 /* HapticManager.swift */,
+				B10008 /* CatVideoView.swift */,
+				B10009 /* StatsView.swift */,
 				B10011 /* Assets.xcassets */,
 				B10012 /* Info.plist */,
 			);
@@ -160,6 +166,8 @@
 				A10005 /* FurLayer.swift in Sources */,
 				A10006 /* AudioManager.swift in Sources */,
 				A10007 /* HapticManager.swift in Sources */,
+				A10008 /* CatVideoView.swift in Sources */,
+				A10009 /* StatsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
