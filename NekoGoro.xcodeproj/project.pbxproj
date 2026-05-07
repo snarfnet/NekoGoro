@@ -15,25 +15,9 @@
 		A10006 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10006 /* AudioManager.swift */; };
 		A10007 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10007 /* HapticManager.swift */; };
 		A10011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10011 /* Assets.xcassets */; };
-		B1000003 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1000001 /* GoogleMobileAds.xcframework */; };
-		B1000004 /* UserMessagingPlatform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1000002 /* UserMessagingPlatform.xcframework */; };
-		B1000005 /* GoogleMobileAds.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1000001 /* GoogleMobileAds.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1000006 /* UserMessagingPlatform.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1000002 /* UserMessagingPlatform.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B1000008 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B1000005 /* GoogleMobileAds.xcframework in Embed Frameworks */,
-				B1000006 /* UserMessagingPlatform.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +31,6 @@
 		B10011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B10012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B10099 /* NekoGoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NekoGoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1000001 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleMobileAds.xcframework; sourceTree = "<group>"; };
-		B1000002 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +38,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1000003 /* GoogleMobileAds.xcframework in Frameworks */,
-				B1000004 /* UserMessagingPlatform.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,11 +80,8 @@
 		B1000007 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1000001 /* GoogleMobileAds.xcframework */,
-				B1000002 /* UserMessagingPlatform.xcframework */,
 			);
 			name = Frameworks;
-			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,7 +91,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F10003 /* Build configuration list for PBXNativeTarget "NekoGoro" */;
 			buildPhases = (
-				B1000008 /* Embed Frameworks */,
 				E10002 /* Sources */,
 				C10001 /* Frameworks */,
 				E10003 /* Resources */,
@@ -223,7 +199,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83VGKGSQUH;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = NekoGoro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -243,7 +218,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 83VGKGSQUH;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = NekoGoro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
