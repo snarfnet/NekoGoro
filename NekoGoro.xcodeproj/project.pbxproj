@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10001 /* NekoGoroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10001 /* NekoGoroApp.swift */; };
+		A10002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10002 /* ContentView.swift */; };
+		A10003 /* PettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10003 /* PettingView.swift */; };
+		A10004 /* CatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10004 /* CatView.swift */; };
+		A10005 /* FurLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10005 /* FurLayer.swift */; };
+		A10006 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10006 /* AudioManager.swift */; };
+		A10007 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10007 /* HapticManager.swift */; };
+		A10011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10011 /* Assets.xcassets */; };
+		B1000003 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1000001 /* GoogleMobileAds.xcframework */; };
+		B1000004 /* UserMessagingPlatform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1000002 /* UserMessagingPlatform.xcframework */; };
+		B1000005 /* GoogleMobileAds.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1000001 /* GoogleMobileAds.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1000006 /* UserMessagingPlatform.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1000002 /* UserMessagingPlatform.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B1000008 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B1000005 /* GoogleMobileAds.xcframework in Embed Frameworks */,
+				B1000006 /* UserMessagingPlatform.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B10001 /* NekoGoroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekoGoroApp.swift; sourceTree = "<group>"; };
+		B10002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B10003 /* PettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PettingView.swift; sourceTree = "<group>"; };
+		B10004 /* CatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatView.swift; sourceTree = "<group>"; };
+		B10005 /* FurLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurLayer.swift; sourceTree = "<group>"; };
+		B10006 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		B10007 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		B10011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B10012 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B10099 /* NekoGoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NekoGoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1000001 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleMobileAds.xcframework; sourceTree = "<group>"; };
+		B1000002 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C10001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1000003 /* GoogleMobileAds.xcframework in Frameworks */,
+				B1000004 /* UserMessagingPlatform.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D10001 = {
+			isa = PBXGroup;
+			children = (
+				D10002 /* NekoGoro */,
+				B1000007 /* Frameworks */,
+				D10009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D10002 /* NekoGoro */ = {
+			isa = PBXGroup;
+			children = (
+				B10001 /* NekoGoroApp.swift */,
+				B10002 /* ContentView.swift */,
+				B10003 /* PettingView.swift */,
+				B10004 /* CatView.swift */,
+				B10005 /* FurLayer.swift */,
+				B10006 /* AudioManager.swift */,
+				B10007 /* HapticManager.swift */,
+				B10011 /* Assets.xcassets */,
+				B10012 /* Info.plist */,
+			);
+			path = NekoGoro;
+			sourceTree = "<group>";
+		};
+		D10009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B10099 /* NekoGoro.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1000007 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1000001 /* GoogleMobileAds.xcframework */,
+				B1000002 /* UserMessagingPlatform.xcframework */,
+			);
+			name = Frameworks;
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E10001 /* NekoGoro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F10003 /* Build configuration list for PBXNativeTarget "NekoGoro" */;
+			buildPhases = (
+				B1000008 /* Embed Frameworks */,
+				E10002 /* Sources */,
+				C10001 /* Frameworks */,
+				E10003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NekoGoro;
+			productName = NekoGoro;
+			productReference = B10099 /* NekoGoro.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E10099 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					E10001 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = F10001 /* Build configuration list for PBXProject "NekoGoro" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ja;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				ja,
+				Base,
+			);
+			mainGroup = D10001;
+			productRefGroup = D10009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E10001 /* NekoGoro */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E10003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10011 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E10002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10001 /* NekoGoroApp.swift in Sources */,
+				A10002 /* ContentView.swift in Sources */,
+				A10003 /* PettingView.swift in Sources */,
+				A10004 /* CatView.swift in Sources */,
+				A10005 /* FurLayer.swift in Sources */,
+				A10006 /* AudioManager.swift in Sources */,
+				A10007 /* HapticManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F10004 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83VGKGSQUH;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F10005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83VGKGSQUH;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F10002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83VGKGSQUH;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NekoGoro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokyonasu.NekoGoro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F10003b /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 83VGKGSQUH;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NekoGoro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokyonasu.NekoGoro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F10001 /* Build configuration list for PBXProject "NekoGoro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10004 /* Debug */,
+				F10005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F10003 /* Build configuration list for PBXNativeTarget "NekoGoro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10002 /* Debug */,
+				F10003b /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = E10099 /* Project object */;
+}

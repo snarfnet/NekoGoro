@@ -1,0 +1,7 @@
+Pods/
+build/
+*.xcworkspace
+DerivedData/
+.DS_Store
+*.ipa
+.omc/
