@@ -197,29 +197,53 @@ def main():
             continue
 
     if not submitted:
-        # Try creating a new one (may fail if limit reached)
-        print("Creating new review submission...")
-        review = api("POST", "/reviewSubmissions", json={
-            "data": {
-                "type": "reviewSubmissions",
-                "attributes": {"platform": "IOS"},
-                "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
-            }
-        })
-        review_id = review["data"]["id"]
-        api("POST", "/reviewSubmissionItems", json={
-            "data": {
-                "type": "reviewSubmissionItems",
-                "relationships": {
-                    "reviewSubmission": {"data": {"type": "reviewSubmissions", "id": review_id}},
-                    "appStoreVersion": {"data": {"type": "appStoreVersions", "id": version_id}},
-                },
-            }
-        })
-        api("PATCH", f"/reviewSubmissions/{review_id}", json={
-            "data": {"type": "reviewSubmissions", "id": review_id, "attributes": {"submitted": True}}
-        })
-        print("Submitted for review")
+        # Try creating a new reviewSubmission (may fail if limit reached)
+        try:
+            print("Creating new review submission...")
+            review = api("POST", "/reviewSubmissions", json={
+                "data": {
+                    "type": "reviewSubmissions",
+                    "attributes": {"platform": "IOS"},
+                    "relationships": {"app": {"data": {"type": "apps", "id": app_id}}},
+                }
+            })
+            review_id = review["data"]["id"]
+            api("POST", "/reviewSubmissionItems", json={
+                "data": {
+                    "type": "reviewSubmissionItems",
+                    "relationships": {
+                        "reviewSubmission": {"data": {"type": "reviewSubmissions", "id": review_id}},
+                        "appStoreVersion": {"data": {"type": "appStoreVersions", "id": version_id}},
+                    },
+                }
+            })
+            api("PATCH", f"/reviewSubmissions/{review_id}", json={
+                "data": {"type": "reviewSubmissions", "id": review_id, "attributes": {"submitted": True}}
+            })
+            print("Submitted for review")
+            submitted = True
+        except RuntimeError as e:
+            print(f"reviewSubmissions approach failed: {e}")
+
+    if not submitted:
+        # Fallback: use legacy appStoreVersionSubmissions endpoint
+        print("Trying legacy appStoreVersionSubmissions endpoint...")
+        try:
+            api("POST", "/appStoreVersionSubmissions", json={
+                "data": {
+                    "type": "appStoreVersionSubmissions",
+                    "relationships": {
+                        "appStoreVersion": {"data": {"type": "appStoreVersions", "id": version_id}},
+                    },
+                }
+            })
+            print("Submitted for review via legacy endpoint")
+            submitted = True
+        except RuntimeError as e:
+            print(f"Legacy submission also failed: {e}")
+
+    if not submitted:
+        raise RuntimeError("All submission methods failed. Manual submission via App Store Connect may be required.")
 
 
 if __name__ == "__main__":
