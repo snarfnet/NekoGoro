@@ -57,6 +57,20 @@ def get_or_create_version(app_id, version_string):
         if item["attributes"].get("versionString") == version_string:
             return item["id"]
 
+    # If an editable version exists with wrong versionString, update it
+    for item in payload.get("data", []):
+        old_version = item["attributes"].get("versionString", "")
+        print(f"Found editable version {old_version}, updating to {version_string}")
+        api("PATCH", f"/appStoreVersions/{item['id']}", json={
+            "data": {
+                "type": "appStoreVersions",
+                "id": item["id"],
+                "attributes": {"versionString": version_string},
+            }
+        })
+        return item["id"]
+
+    # No editable version found, create new
     payload = api("POST", "/appStoreVersions", json={
         "data": {
             "type": "appStoreVersions",
