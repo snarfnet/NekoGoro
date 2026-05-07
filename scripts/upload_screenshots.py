@@ -77,6 +77,18 @@ def upload_screenshots():
                 }
             })
             print(f"  Uploaded {ss.name} for {display_type}")
+            # Wait for screenshot processing
+            for _ in range(30):
+                time.sleep(5)
+                status = api("GET", f"/appScreenshots/{ss_id}")
+                state = status["data"]["attributes"].get("assetDeliveryState", {}).get("state", "")
+                if state == "COMPLETE":
+                    print(f"    Screenshot {ss.name} processing complete")
+                    break
+                elif state == "FAILED":
+                    print(f"    Screenshot {ss.name} processing failed")
+                    break
+                print(f"    Screenshot state: {state}, waiting...")
             time.sleep(1)
 
 
