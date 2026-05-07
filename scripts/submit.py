@@ -138,15 +138,48 @@ def main():
             pass
     time.sleep(3)
 
-    # Try to find an existing usable submission first
+    # Try each existing READY_FOR_REVIEW submission
+    submitted = False
     try:
         existing = api("GET", f"/apps/{app_id}/reviewSubmissions?filter[state]=READY_FOR_REVIEW")
-        if existing.get("data"):
-            review_id = existing["data"][0]["id"]
-            print(f"Reusing existing review submission {review_id}")
-        else:
-            raise RuntimeError("No existing submission")
     except RuntimeError:
+        existing = {"data": []}
+
+    for sub in existing.get("data", []):
+        review_id = sub["id"]
+        print(f"Trying existing review submission {review_id}...")
+        try:
+            try:
+                api("POST", "/reviewSubmissionItems", json={
+                    "data": {
+                        "type": "reviewSubmissionItems",
+                        "relationships": {
+                            "reviewSubmission": {"data": {"type": "reviewSubmissions", "id": review_id}},
+                            "appStoreVersion": {"data": {"type": "appStoreVersions", "id": version_id}},
+                        },
+                    }
+                })
+                print(f"  Added item to {review_id}")
+            except RuntimeError as e:
+                if "409" in str(e):
+                    print(f"  Item already exists in {review_id}")
+                else:
+                    print(f"  Could not add item: {e}")
+                    continue
+
+            api("PATCH", f"/reviewSubmissions/{review_id}", json={
+                "data": {"type": "reviewSubmissions", "id": review_id, "attributes": {"submitted": True}}
+            })
+            print("Submitted for review")
+            submitted = True
+            break
+        except RuntimeError as e:
+            print(f"  Could not submit {review_id}: {e}")
+            continue
+
+    if not submitted:
+        # Try creating a new one (may fail if limit reached)
+        print("Creating new review submission...")
         review = api("POST", "/reviewSubmissions", json={
             "data": {
                 "type": "reviewSubmissions",
@@ -155,9 +188,6 @@ def main():
             }
         })
         review_id = review["data"]["id"]
-        print(f"Created new review submission {review_id}")
-
-    try:
         api("POST", "/reviewSubmissionItems", json={
             "data": {
                 "type": "reviewSubmissionItems",
@@ -167,16 +197,10 @@ def main():
                 },
             }
         })
-    except RuntimeError as e:
-        if "409" in str(e):
-            print("Review submission item already exists, continuing")
-        else:
-            raise
-
-    api("PATCH", f"/reviewSubmissions/{review_id}", json={
-        "data": {"type": "reviewSubmissions", "id": review_id, "attributes": {"submitted": True}}
-    })
-    print("Submitted for review")
+        api("PATCH", f"/reviewSubmissions/{review_id}", json={
+            "data": {"type": "reviewSubmissions", "id": review_id, "attributes": {"submitted": True}}
+        })
+        print("Submitted for review")
 
 
 if __name__ == "__main__":
