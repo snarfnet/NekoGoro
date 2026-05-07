@@ -3,7 +3,7 @@ import time
 
 from asc_api import api, find_app_id, get_or_create_version, get_localization_id
 
-APP_VERSION = os.environ.get("APP_VERSION", "1.0")
+APP_VERSION = os.environ.get("APP_VERSION", "1.2")
 BUILD_NUMBER = os.environ.get("BUILD_NUMBER", "")
 REVIEW_CONTACT = {
     "contactFirstName": "東京",

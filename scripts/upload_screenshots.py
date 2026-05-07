@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 from asc_api import api, find_app_id, get_or_create_version, get_localization_id
 
-APP_VERSION = os.environ.get("APP_VERSION", "1.0")
+APP_VERSION = os.environ.get("APP_VERSION", "1.2")
 SCREENSHOT_DIR = Path(__file__).resolve().parent.parent / "AppStoreScreenshots"
 
 DISPLAY_TYPES = {
