@@ -101,6 +101,7 @@ jobs:
         run: python3 scripts/upload_screenshots.py
 
       - name: Submit for Review
+        continue-on-error: true
         env:
           ASC_KEY_ID: WDXGY9WX55
           ASC_ISSUER_ID: 2be0734f-943a-4d61-9dc9-5d9045c46fec
