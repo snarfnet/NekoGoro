@@ -30,12 +30,14 @@ def upload_screenshots():
 
     print(f"Found {len(screenshots)} screenshots")
 
-    existing = api("GET", f"/appStoreVersionLocalizations/{loc_id}/appScreenshots")
-    for item in existing.get("data", []):
-        try:
-            api("DELETE", f"/appScreenshots/{item['id']}")
-        except RuntimeError:
-            pass
+    existing_sets = api("GET", f"/appStoreVersionLocalizations/{loc_id}/appScreenshotSets")
+    for ss_set in existing_sets.get("data", []):
+        ss_in_set = api("GET", f"/appScreenshotSets/{ss_set['id']}/appScreenshots")
+        for item in ss_in_set.get("data", []):
+            try:
+                api("DELETE", f"/appScreenshots/{item['id']}")
+            except RuntimeError:
+                pass
     time.sleep(2)
 
     for display_key, display_type in DISPLAY_TYPES.items():
